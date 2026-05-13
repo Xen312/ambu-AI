@@ -10,8 +10,7 @@ import { registerRoutes } from "./server/routes/index.js";
 import cors from "cors";
 import helmet from "helmet";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = process.cwd();
 
 async function startServer() {
   const app = express();
