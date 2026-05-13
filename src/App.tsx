@@ -5,7 +5,24 @@ import Dashboard from './pages/Dashboard';
 import { io } from 'socket.io-client';
 import { useSimulationStore } from './store/useSimulationStore';
 
-const socket = io();
+const SOCKET_URL =
+  import.meta.env.VITE_SOCKET_URL;
+
+export const socket = io(
+  SOCKET_URL,
+  {
+    transports: [
+      "websocket",
+      "polling"
+    ],
+
+    reconnection: true,
+
+    reconnectionAttempts: 10,
+
+    reconnectionDelay: 1000,
+  }
+);
 
 function AppLayout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
