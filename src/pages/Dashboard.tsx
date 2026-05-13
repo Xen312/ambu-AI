@@ -10,7 +10,9 @@ export default function Dashboard({ socket }: { socket: Socket }) {
   const [selectedRouteIndex, setSelectedRouteIndex] = useState(0);
 
   useEffect(() => {
-    fetch('/api/simulation/routes')
+    fetch(
+    `${import.meta.env.VITE_API_URL}/api/simulation/routes`
+  )
       .then(res => res.json())
       .then(data => {
         setRouteOptions(data);
@@ -18,14 +20,48 @@ export default function Dashboard({ socket }: { socket: Socket }) {
       .catch(console.error);
   }, []);
 
-  const handleStart = () => fetch('/api/simulation/start', { 
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ routeIndex: selectedRouteIndex })
-  });
-  const handlePause = () => fetch('/api/simulation/pause', { method: 'POST' });
-  const handleResume = () => fetch('/api/simulation/resume', { method: 'POST' });
-  const handleReset = () => fetch('/api/simulation/reset', { method: 'POST' });
+  const API_URL =
+  import.meta.env.VITE_API_URL;
+
+  const handleStart = () =>
+    fetch(
+      `${API_URL}/api/simulation/start`,
+      {
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify({
+          routeIndex: selectedRouteIndex
+        })
+      }
+    );
+
+  const handlePause = () =>
+    fetch(
+      `${API_URL}/api/simulation/pause`,
+      {
+        method: 'POST'
+      }
+    );
+
+  const handleResume = () =>
+    fetch(
+      `${API_URL}/api/simulation/resume`,
+      {
+        method: 'POST'
+      }
+    );
+
+  const handleReset = () =>
+    fetch(
+      `${API_URL}/api/simulation/reset`,
+      {
+        method: 'POST'
+      }
+    );
 
   return (
     <div className="flex-1 grid grid-cols-12 gap-6 min-h-0">
