@@ -6,7 +6,9 @@ export let io: Server;
 export function setupSockets(server: HttpServer) {
   io = new Server(server, {
     cors: {
-      origin: "https://ambu-ai.vercel.app",
+      origin: [
+        "https://ambu-ai.vercel.app"
+      ],
       methods: ["GET", "POST"]
     }
   });
