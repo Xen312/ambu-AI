@@ -1,0 +1,6 @@
+{
+  "name": "Ambulance Priority Enforcement",
+  "description": "AI-powered emergency traffic coordination dashboard for simulating ambulance green corridors in Imphal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
